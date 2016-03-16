@@ -120,14 +120,7 @@
                                 $chosen = ucwords(strtolower($chosen));
                                 echo "<option $sel value='$id'>$chosen</option>";
                             }
-                            /*
-                            do{
-                                ?>
-                                    <option value="<?php echo $id;?>"<?=$dist_rs['districtid']=="$id" ? 'selected="selected"' : '';?>><?php echo $dist_rs['districtname']; ?></option>
-                                <?php
-                            }while($dist_rs = mysqli_fetch_assoc($dist_qry));
-                            /*<option value="<?php echo $_POST['slc_districtid'];?>"><?phpecho $dist_rs['districtname']; ?></option>*/
-                            
+                           
                         }
                         
                     ?>
@@ -158,12 +151,6 @@
                                 $chosen = ucwords(strtolower($chosen));
                                 echo "<option $sel value='$id'>$chosen</option>";
                             }
-                            
-                            /*
-                            ?>
-                            <option value="<?php echo $_POST['slc_suburbid']; ?>"><?php echo ucwords(strtolower($sub_rs['suburbname'])); ?></option>
-                            <?php
-                            */
                         }
                     ?>
                 </select>
@@ -234,14 +221,7 @@
             });
     });
 </script>
-<!--End jQuery-->
 
-<!--<div class="row" style="width: 60%">
-    <div class="forsale-title" style="background-color: #df7000">
-        <h1>PROPERTY FOR SALE</h1>
-    </div>
-    
-</div>-->
 <div class="row" id="result_via_textbox">
     
 </div>
@@ -252,10 +232,6 @@
     mysql_select_db("realestate",$con);
     
     if(isset($_POST['btnsearch'])){ //Check if button search was clicked
-        
-        //echo "region id is ".$_POST['slc_regionid']." /";
-        //echo "district id is ".$_POST['slc_districtid']." /";
-        //echo "suburbid id is ".$_POST['slc_suburbid'];
         
         if(!empty($_POST['slc_regionid']) and !empty($_POST['slc_districtid'])){ //Region was selected, but district was not chosen.
             
