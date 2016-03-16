@@ -77,25 +77,7 @@
             </div>
             </div>
         </nav>
-        
-        <!--End New Design1-->
-       <!--Testing1 <header class="header-top">
-            <a href="index.php"><img src="images/OT.gif" height="90%" width= "20%"/></a>
-            <div class="weblogo-top-left"></div>
-            <div class="weblogo-top-right"></div>
-        </header> End Testing1-->
-        
-       <!-- <header class="header">
-            <div class="weblogo">
-                <!--<a href="index.php"><img src="images/kh24.gif" height="70%" width= "70%" style=""/></a> -->
-            <!--</div>
-            <?php
-                //include("loginheader.php");
-                //include("menuheader.php");
-            ?>
-        <!--</header>-->
-       
-        <!--Trial new -->
+    
          <?php
             if(!isset($_GET['page'])){
                 ?>
@@ -139,11 +121,9 @@
             <a href="index.php"><img src="images/OT.gif" height="90%" width= "20%"/></a>
         </div>
        <footer class="footer">
-            <!--<img src="images/back1.png" id="bg" alt="">-->
             <div class="footerrow">
                 
                 <div class= "row">
-                    <!--<a href="index.php"><img src="images/AT.jpg" height="100%" width= "50%" style="margin-top:50px"/></a>-->
                 </div>
                 
                  <p style="margin-top:50px">Instant update database project by <a href="mailto:pnlovenz@gmail.com">pnlovenz@gmail.com</a></p>
