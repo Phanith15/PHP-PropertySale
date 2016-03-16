@@ -1,0 +1,46 @@
+.no-padding{
+    padding: 0px;
+}
+.no-margin{
+    margin: 0px;
+}
+.margin-below-banner{
+    margin-top: 405px;
+}
+.full-width{
+    width: 100%;
+}
+.add-property-title{
+    height: 40px;
+    width:100%;
+    background-color: whitesmoke;
+    margin-bottom: 2px;
+}
+.add-property{
+    margin-bottom: 10px;
+    height: auto;
+    width:100%;
+    background-color: whitesmoke;
+     -webkit-box-shadow: 2px 2px 2px grey;
+    box-shadow:  2px 2px 2px grey;
+}
+.no-border{
+    border: none;
+    background-color: #0D3880;
+    padding-bottom: 40px;
+}
+.navbar-inverse .navbar-nav>li>a{ /*Navigation bar text color*/
+    color: white;
+    font-size: 1.0em;
+}
+.navbar-inverse .navbar-nav>li>a.current{
+    color: orange;
+    /*background-color: #0D3880;*/
+    
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: orange;
+}
+.navbar-inverse .navbar-nav>li>a:active{
+    color: #003162;
+}
