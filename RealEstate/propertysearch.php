@@ -190,7 +190,7 @@
                     
                </div>
                <div class="col-search-bu col-xs-6 col-sm-6 col-md-2"> <!--col-search-bu-->
-                    <input  class="button-search"type="submit" value="search" name="btnsearch" id="busearch"/>
+                    <input  class="button-search"type="submit" value="SEARCH" name="btnsearch" id="busearch"/>
                </div> 
             </form>
     </div>
@@ -203,12 +203,12 @@
         $("#busearch").mouseover(function(){
             $("#busearch").css("background-color","orange");
             $("#busearch").css("color","white");
-            $("#busearch").attr('value','Search');
+            $("#busearch").attr('value','SEARCH');
             });
         $("#busearch").mouseout(function(){
             $("#busearch").css("background-color","#fa086f");
             $("#busearch").css("color","white");
-            $("#busearch").attr('value','Search');
+            $("#busearch").attr('value','SEARCH');
             });
         $("#txtsearch").mouseover(function(){
             $("#txtsearch").attr('placeholder','Enter location');
@@ -340,7 +340,7 @@
                 <h2><?php echo ucwords(strtolower( $location));?></h2>
                 <h2><?php echo "( ".ucwords(strtolower($row3['suburbname']))." )" ?></h2>
                 
-                <p><?php echo $row['description'];?></p>
+                <p><?php echo substr($row['description'],0,100)." ...";?></p><!--Get first 100 characters-->
                 
                 <p style="font-weight:bold"><?php echo $row['address']; ?></p>
                 <h1><?php echo "$".number_format($row['price'],0); ?></h1>
