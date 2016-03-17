@@ -1,1 +1,0 @@
-alert("Please choose district.");
