@@ -1,5 +1,5 @@
 
-<div class="navbar navbar-inverse navbar-static-top no-border"><!--searchpanel-->
+<div class="navbar navbar-inverse expend-height no-radius" ><!--searchpanel--><!--navbar navbar-inverse navbar-static-top no-border-->
     <div class="control-search">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="getregionalproperty.js"></script>
@@ -60,13 +60,13 @@
                         xmlhttp.send(null);
                     }
                 }
-            </script>
-           
+            </script>   
             <form action="" method="post" name="frmsearch">
                 <!-----------------------------------------RegionName dropdown list------------------------------------------------------------------------->
+                
                 <div class="col-xs-12 col-sm-6 col-md-3"> 
                     <p style="margin-top:20px" >Regions</p>
-                    <select id="slcRegion" class="form-control" name="slc_regionid" onclick="showDistricts();">
+                    <select id="slcRegion" class="form-control" name="slc_regionid" onclick="showDistricts();" style="width: 100%">
                         <option value="0">Regions</option> 
                         <?php
                         $locatlist_sql = "SELECT * FROM location"; 
@@ -96,7 +96,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <!-----------------------------------------------DistrictName dropdown list------------------------------------------------------------------->
                 <p style="margin-top:20px">District</p>
-                <select id="slcDistrict" class="form-control" name="slc_districtid" onchange="showSuburbs();">
+                <select id="slcDistrict" class="form-control" name="slc_districtid" onchange="showSuburbs();" style="width: 100%">
                     <!--Retain selected district name after searching -->
                     <?php
                         if(isset($_POST['slc_districtid'])){
@@ -151,6 +151,12 @@
                                 $chosen = ucwords(strtolower($chosen));
                                 echo "<option $sel value='$id'>$chosen</option>";
                             }
+                            
+                            /*
+                            ?>
+                            <option value="<?php echo $_POST['slc_suburbid']; ?>"><?php echo ucwords(strtolower($sub_rs['suburbname'])); ?></option>
+                            <?php
+                            */
                         }
                     ?>
                 </select>
@@ -162,7 +168,7 @@
                ?>
                <div class="col-xs-12 col-sm-6 col-md-3">
                     <p style="margin-top:20px">From</p>
-                    <select id="valfrom" class="form-control" name="valfrom">
+                    <select id="valfrom" class="form-control" name="valfrom" style="width: 100%">
                         <?php
                             foreach($val_froms as $id=>$chosen){
                                 if($id == $_POST['valfrom']){
@@ -175,7 +181,7 @@
                         ?>
                     </select>
                     <p style="margin-top: 10px">To</p>
-                    <select id="valto" class="form-control" name="valto">
+                    <select id="valto" class="form-control" name="valto" style="width: 100%">
                         <?php
                             foreach($val_tos as $id=>$chosen){
                                 if($id == $_POST['valto']){  
@@ -190,7 +196,7 @@
                     
                </div>
                <div class="col-search-bu col-xs-6 col-sm-6 col-md-2"> <!--col-search-bu-->
-                    <input  class="button-search"type="submit" value="SEARCH" name="btnsearch" id="busearch"/>
+                    <input  class="button-search" type="submit" value="SEARCH" name="btnsearch" id="busearch"/>
                </div> 
             </form>
     </div>
@@ -204,6 +210,7 @@
             $("#busearch").css("background-color","orange");
             $("#busearch").css("color","white");
             $("#busearch").attr('value','SEARCH');
+            
             });
         $("#busearch").mouseout(function(){
             $("#busearch").css("background-color","#fa086f");
@@ -221,17 +228,29 @@
             });
     });
 </script>
+<!--End jQuery-->
 
+<!--<div class="row" style="width: 60%">
+    <div class="forsale-title" style="background-color: #df7000">
+        <h1>PROPERTY FOR SALE</h1>
+    </div>
+    
+</div>-->
 <div class="row" id="result_via_textbox">
     
 </div>
 <div class="container">
-<div class="row" style="width: 100%">
+
+<div class="row">
 <?php
     $con = mysql_connect("localhost","root","");
     mysql_select_db("realestate",$con);
     
     if(isset($_POST['btnsearch'])){ //Check if button search was clicked
+        
+        //echo "region id is ".$_POST['slc_regionid']." /";
+        //echo "district id is ".$_POST['slc_districtid']." /";
+        //echo "suburbid id is ".$_POST['slc_suburbid'];
         
         if(!empty($_POST['slc_regionid']) and !empty($_POST['slc_districtid'])){ //Region was selected, but district was not chosen.
             
@@ -265,7 +284,7 @@
             <?php
         }
         
-        if(!empty($_POST['slc_regionid']) and empty($_POST['slc_districtid']) and empty($_POST['slc_suburbid'])){
+        if(!empty($_POST['slc_regionid']) and empty($_POST['slc_districtid']) and empty($_POST['slc_suburbid'])){ //e.g:select Wellington,cos no districts have been applied to wellington yet.
             ?>
                 <div class="notfound" style="padding-top:50px">
                     <?php die( "No results found!") ;?>
@@ -299,16 +318,16 @@
                 $found_rs = mysqli_fetch_assoc($found_qry);
             }  
            
-            if(!$found_rs){//When No Property to display
+           /* if(!$found_rs){//When No Property to display
                 ?>
                 <div class="notfound" style="padding-top:50px">
-                    <?php echo "No results found!" ;?>
+                    <?php echo "No Results found!" ;?>
                 </div>
                 <?php
             }
             else{
                 $found_qry = mysqli_query($dbconn,$found_sql);
-            } 
+            } */
             
         }
     }else{ //When load the page.
@@ -317,7 +336,20 @@
         //$found_sql = "SELECT * FROM property";
         $result = mysqli_query($dbconn,$found_sql);
         $row = mysqli_fetch_assoc($result);
-
+        $num_results= $result->num_rows;
+        if($num_results == 0){
+            ?>
+                <div class="forsale-title error" style="margin-bottom: 30px;">
+                    <h4 style="padding-top:5px;"><?php echo "Number of properties found: "."$num_results"; ?></h4>
+                </div>
+            <?php
+        }else{
+        ?>
+            <div class="forsale-title">
+                 <h4 style="padding-top:5px;"><?php echo "Number of properties found: "."$num_results"; ?></h4>
+            </div>
+        <?php
+        }
     if($row){ //Only excute when it has property to show
         do{
             //echo "When load page";
@@ -343,7 +375,7 @@
                 <p><?php echo substr($row['description'],0,100)." ...";?></p><!--Get first 100 characters-->
                 
                 <p style="font-weight:bold"><?php echo $row['address']; ?></p>
-                <h1><?php echo "$".number_format($row['price'],0); ?></h1>
+                <h1 style="text-align: right"><?php echo "$".number_format($row['price'],0); ?></h1>
                 <div class="house-detail">
                     <div class="col-left">
                         <div class="house-detail">
