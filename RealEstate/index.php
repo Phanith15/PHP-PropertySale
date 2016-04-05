@@ -14,16 +14,16 @@
         <link rel="shortcut icon" href="images/iconKS.png"><!--Add icon to your webpage.-->
         <title> The Property For Sale</title>
     </head>
-    <body bgcolor="#838383">
+    <body style="background-color: #ffffff;">
         <!--New Design1-->
-        <div class="page-header no-margin no-padding" style="background-color: #0f0f0f">
+        <div class="page-header no-margin no-padding no-border" style="background-color: #0f0f0f"> <!--#1d063d-->
             <div class="container">
                 <img src="images/OT.gif" height="110px;"/> <!--Header image-->
             </div>
             
         </div>
-        <nav class="navbar navbar-inverse navbar-static-top " role="navigation" style="margin:0px;"><!--navbar-fixed-top-->
-            <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin:0px;"><!--navbar-fixed-top-->
+           <div class="container">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-OnlineTrade-navbar-collapse-1">
@@ -33,27 +33,35 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">ONLINE-TRADES</a>
+                    <a class="navbar-brand  text-color-white " style="color: white" href="index.php">Online trades</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-OnlineTrade-navbar-collapse-1">
                     
                     <ul class="nav navbar-nav navbar-center">
                         <?php ob_start(); ?><!--Enable redirect header when user enter correct password in checkuserlogin.php-->
-                        <li style="color: white"><a href="index.php"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                        <li><a href="index.php?page=propertysearch"><i class="glyphicon glyphicon-briefcase"></i> For Sale</a></li>
-                        <li><a href="index.php?page=accessories"><i class="glyphicon glyphicon-phone"></i> Accessories</a></li>
-                        <li><a href="index.php?page=about"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
-                        <li><a href="index.php?page=contact"><i class="glyphicon glyphicon-phone-alt"></i> Contact</a></li>
-                        <li ><a href="index.php?page=admin"><i class="glyphicon glyphicon-lock"></i> Admin</a></li>
-                        
-                        <!--<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sale<b class="caret"></b></a>
+                        <li style="color: white"><a href="index.php"><i class="glyphicon glyphicon-home"></i> HOME</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i> FOR SALE<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Link1</a></li>
-                                <li><a href="#">Link2</a></li>
-                                <li><a href="#">Link3</a></li>
+                                <li style="border-bottom:1px solid gray;"><a href="index.php?page=propertysearch"><i class="glyphicon glyphicon-briefcase"></i> PROPERTIES</a></li>
+                                <li style="border-bottom:1px solid gray;"><a href="index.php?page=accessories"><i class="glyphicon glyphicon-phone"></i> ACCESSORIES</a></li>
+                                <li style="border-bottom:1px solid gray;"><a href="#"><i class="glyphicon glyphicon-book"></i> BOOKS</a></li>
                             </ul>
-                        </li>-->
+                        </li>
+                       <!-- <li><a href="index.php?page=propertysearch"><i class="glyphicon glyphicon-briefcase"></i> PROPERTY</a></li>
+                        <li><a href="index.php?page=accessories"><i class="glyphicon glyphicon-phone"></i> ACCESSORIES</a></li> -->
+                        <li><a href="index.php?page=about"><i class="glyphicon glyphicon-info-sign"></i> ABOUT</a></li>
+                        <li><a href="index.php?page=contact"><i class="glyphicon glyphicon-phone-alt"></i> CONTACT</a></li>
+                        <li ><a href="index.php?page=admin"><i class="glyphicon glyphicon-lock"></i> ADMIN</a></li>
+                        
+                       <!-- <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i> SALE<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.php?page=propertysearch">Properties</a></li>
+                                <li><a href="index.php?page=accessories">Accessories</a></li>
+                                <li><a href="#">Books</a></li>
+                            </ul>
+                        </li> -->
                     </ul>
                     <div>
                         <?php
@@ -77,7 +85,6 @@
             </div>
             </div>
         </nav>
-    
          <?php
             if(!isset($_GET['page'])){
                 ?>
@@ -98,17 +105,22 @@
             }
         ?>    
         
-       <div class="container"> <!--bodycontainer-->
+      <!-- <div class="container">--> <!--bodycontainer-->
             <?php
                 if (!isset($_GET['page'])){
                     ?>
-                        <div style="padding-top:405px"></div>
+                        <div class="container bg-color"  style="margin-top:500px">
+                            <?php include("home.php");?>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <img src="images/landscape-banner.jpg" width="100%" height="500" id="galaxyImg">
+                        </div>
                     <?php
-                    include("home.php");
+                    //include("home.php");
                 }
             ?>
-       </div>
-       <div class="searchpanel-property" style="padding-top:0"><!--searchpanel-property-->
+       <!--</div>-->
+       <div class="searchpanel-property" style="margin-top:0"><!--searchpanel-property-->
         <?php
             if(isset($_GET['page'])){
                  $page= $_GET['page'];
@@ -116,22 +128,37 @@
             }
         ?>
        </div>
-       
-       <div class="footertop">
-            <a href="index.php"><img src="images/OT.gif" height="90%" width= "20%"/></a>
-        </div>
+       <!--Start footer-->
+       <div class="footertop"></div>
        <footer class="footer">
-            <div class="footerrow">
-                
-                <div class= "row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="images/OT.gif" height="80px;"/>
+                        <h4 style="color: white">Online Trading .,Ltd</4><p></p>
+                        <p style="font-size:0.7em">107 Renoir Drive, Rolleston, Christchurch, New Zealand</p>
+                        <p style="font-size:0.7em">Email: pnlovenz@gmail.com</p>
+                        
+                    </div>
                 </div>
-                
-                 <p style="margin-top:50px">Instant update database project by <a href="mailto:pnlovenz@gmail.com">pnlovenz@gmail.com</a></p>
-                 <p>Copyright 2016 Khmer24Stars(New Zealand). All rights reserved.</p>
+                <div class="bottom-footer">
+                    <div class="col-md-5">
+                        <p>© Copyright KhmerStar(New Zealand) 2016.</p>
+                    </div>
+                    <div class="col-md-7">
+                        <ul class="footer-nav">
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="index.php?page=propertysearch">Property</a></li>
+                            <li><a href="index.php?page=accessories">Phones</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-           
+            
         </footer>
-       
+       <!--End footer-->
        <script scr="bootstrap/js/jquery1.12.1.js"></script>
        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
