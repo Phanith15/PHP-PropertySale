@@ -60,8 +60,8 @@ if ($qry=mysqli_query($dbconn,$sql)){
 <!--End New Edit-->
 <div class="container">
     <div class="row" style="width: 100%">
-        <div class="forsale-title" style="background-color: #df7000">
-            <h1>PROPERTY DETAIL</h1>
+        <div class="forsale-title">
+            <h4 style="padding-top:10px;">PROPERTY DETAIL</h4>
         </div>
     </div>
     <div class="row" style="width: 100%">
@@ -74,22 +74,23 @@ if ($qry=mysqli_query($dbconn,$sql)){
     <div class="row" style="width: 100%">
             <div class="property-desc">
                 <div class="property-name">
-                    <h1><?php echo $loc_rs['locationname'] ?></h1>
+                    <h3><?php echo $loc_rs['locationname'] ?></h3>
                 </div>
-                <div class="property-desc-detail">
+                <div class="property-desc-detail" style="padding-left:20px;">
                     <h2><?php echo "$".number_format($result['price'],0); ?></h2>
-                    <h3><?php echo "District : " .$district_rs['districtname'] ?></h3>
-                    <h3><?php echo "Suburb : ".ucwords(strtolower($suburb_rs['suburbname'])) ?></h3>
-                    <h3><?php echo "Address : " .$result['address'];?></h3>
-                    <h3>Description</h3>
+                    <h4><?php echo "District : " .$district_rs['districtname'] ?></h4>
+                    <h4><?php echo "Suburb : ".ucwords(strtolower($suburb_rs['suburbname'])) ?></h4>
+                    <h4><?php echo "Address : " .$result['address'];?></h4>
+                    <h4>Description</h4>
                     <p><?php echo $result['description']; ?></p>
                     <br>
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                     <form method="post">
-                        <input type="submit" value="Add to Wishlist" id="wishlist" name="btnaddwishlist" class="button" />
+                        <input type="submit" value="Add to Wishlist" id="wishlist" name="btnaddwishlist" class="button"/>
+                        
                     </form>
                     <?php
-                    if(isset($_POST['btnaddwishlist']) && isset($_SESSION['userlogin'])){
+                    if(isset($_POST['btnaddwishlist']) && isset($_SESSION['userlogin'])){//btnaddwishlist
                         $con= mysqli_connect ("localhost","root","");
                         if(!$con){
                             echo "Not connected to server.";
@@ -109,6 +110,7 @@ if ($qry=mysqli_query($dbconn,$sql)){
                     }
                     if(isset($_POST['btnaddwishlist']) && !isset($_SESSION['userlogin'])){
                         //Redirect to login page.
+                         header("Location:index.php?page=userlogin");
                     }
                     ?>
                 </div>
@@ -119,10 +121,10 @@ if ($qry=mysqli_query($dbconn,$sql)){
             <div class="property-contact">
                 <h2>CONTACT INFORMATION</h2>
             </div>
-            <div class="property-contact-detail">
-                <h4><?php echo "Name : ".$agent_rs['name']; ?></h4>
-                <h4> <?php echo "Phone : ".$agent_rs['phone']; ?></h4>
-                <h4> <?php echo "Email : ".$agent_rs['email'];  ?></h4>
+            <div class="property-contact-detail" style="padding-left: 20px;">
+                <p><?php echo "Name : ".$agent_rs['name']; ?></p>
+                <p> <?php echo "Phone : ".$agent_rs['phone']; ?></p>
+                <p> <?php echo "Email : ".$agent_rs['email'];  ?></p>
             </div>
         </div>    
     </div>
