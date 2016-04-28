@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelFinalProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bookings">
+    <Key>
+      <PropertyRef Name="BookedID" />
+    </Key>
+    <Property Name="BookedID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="RoomIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="FromDate" Type="date" />
+    <Property Name="ToDate" Type="date" />
+    <Property Name="Cost" Type="float" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="BookedIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="text" />
+    <Property Name="Phone" Type="text" />
+    <Property Name="NumberOfGuest" Type="int" />
+    <Property Name="RoomBooked" Type="nvarchar" MaxLength="15" />
+    <Property Name="BookedDate" Type="date" />
+    <Property Name="CheckIn" Type="date" />
+    <Property Name="CheckOut" Type="date" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Occupancies">
+    <Key>
+      <PropertyRef Name="OccupancyNumber" />
+    </Key>
+    <Property Name="OccupancyNumber" Type="int" Nullable="false" />
+    <Property Name="EmployeeIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="CustomerIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="DateOccupied" Type="date" />
+    <Property Name="RoomIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="RateApplied" Type="float" />
+    <Property Name="PhoneCharge" Type="int" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="ReceiptNumber" />
+    </Key>
+    <Property Name="ReceiptNumber" Type="int" Nullable="false" />
+    <Property Name="EmployeeIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="CustomerIDFK" Type="nvarchar" MaxLength="15" />
+    <Property Name="PaymentDate" Type="date" />
+    <Property Name="FirstDateOccupied" Type="date" />
+    <Property Name="LastDateOccupied" Type="date" />
+    <Property Name="TotalDays" Type="int" />
+    <Property Name="TaxRate" Type="float" />
+    <Property Name="TaxAmount" Type="float" />
+    <Property Name="PaymentTotal" Type="float" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="RoomID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="RoomType" Type="nvarchar" MaxLength="20" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="RoomStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <Association Name="FK_Bookings_Rooms">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+    <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="Bookings">
+        <PropertyRef Name="RoomIDFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Occupancies_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Occupancies" Type="Self.Occupancies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Occupancies">
+        <PropertyRef Name="CustomerIDFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Occupancies_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Occupancies" Type="Self.Occupancies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Occupancies">
+        <PropertyRef Name="EmployeeIDFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Occupancies_Rooms">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+    <End Role="Occupancies" Type="Self.Occupancies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="Occupancies">
+        <PropertyRef Name="RoomIDFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="CustomerIDFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="EmployeeIDFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HotelFinalProjectModelStoreContainer">
+    <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Occupancies" EntityType="Self.Occupancies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bookings_Rooms" Association="Self.FK_Bookings_Rooms">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Bookings" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Occupancies_Customers" Association="Self.FK_Occupancies_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Occupancies" EntitySet="Occupancies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Occupancies_Employees" Association="Self.FK_Occupancies_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Occupancies" EntitySet="Occupancies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Occupancies_Rooms" Association="Self.FK_Occupancies_Rooms">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Occupancies" EntitySet="Occupancies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Customers" Association="Self.FK_Payments_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Employees" Association="Self.FK_Payments_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

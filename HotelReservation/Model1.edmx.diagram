@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e6ef9136401140b7b1b25d7f465b5981" Name="Diagram1">
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Booking" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Customer" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Login" Width="1.5" PointX="2.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Occupancy" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Payment" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.Room" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="HotelFinalProjectModel.FK_Bookings_Rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelFinalProjectModel.FK_Occupancies_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelFinalProjectModel.FK_Payments_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelFinalProjectModel.FK_Occupancies_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelFinalProjectModel.FK_Payments_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelFinalProjectModel.FK_Occupancies_Rooms" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HotelFinalProjectModel.sysdiagram" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
